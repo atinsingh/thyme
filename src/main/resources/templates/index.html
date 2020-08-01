@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blog </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container m-4">
+         <h2 th:text="${title}" class="h2">Blog Application</h2>
+         <hr>
+         <div class="row">
+
+             <div th:each="blog : ${blogs}" class="col-4"  >
+                 <div class="card" style="width: 18rem;">
+                     <img th:src="${blog.getImageUrl()}" src="" class="card-img-top" alt="...">
+                     <div class="card-body">
+                         <h5 th:text="${blog.getTitle()}" class="card-title"></h5>
+                         <p th:text="${blog.getBlogText()}" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                         <a href="#" class="btn btn-primary">Go somewhere</a>
+                     </div>
+                     <hr>
+                      <h3 class="h3">Create New Blog</h3>
+                        <form th:action="@{/save}"  th:object="${blogForm}" method="post" class="form">
+                            <div class="form-group">
+                                <label for="title">Title
+                                    <input  id="title" name="title" th:field="*{title}" type="text" class="form-control"/>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="imageUrl">Title
+                                    <input  id="imageUrl" name="imageUrl" th:field="*{imageUrl}" type="text" class="form-control"/>
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label for="blog">Title
+                                    <input id="blog" name="imageUrl" th:field="*{blogText}" type="text" class="form-control"/>
+                                </label>
+                            </div>
+                            <input type="submit" class="btn btn-primary px-2" value="Create Blog"/>
+                        </form>
+                 </div>
+             </div>
+         </div>
+    </div>
+</body>
+</html>
